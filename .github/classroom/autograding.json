@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "exercise1",
+      "setup": "mkdir build && cmake . -B build && cmake --build build --target test_functions",
+      "run": "cd build/tests && ./test_functions",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 1
+    }
+  ]
+}
