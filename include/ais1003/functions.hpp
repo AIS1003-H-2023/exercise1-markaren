@@ -10,49 +10,87 @@
 namespace ais1003 {
 
     double multiply(double a, double b) {
-        // TODO return the result of a multiplied by b
 
-        return -1; // placeholder
+        return a*b;
     }
 
     int computeSum(std::vector<int> values) {
-        // TODO return the sum of all numbers in `values`
 
-        return -1; // placeholder
+        // note: can be solved with e.g. std::accumulate
+
+        int sum = 0;
+        for (auto value : values) {
+            sum += value;
+        }
+        return sum;
     }
 
     float findLowest(std::vector<float> values) {
-        // TODO return the lowest number in `values`
-        // In this case you can ignore the special case where 'values' could be empty.
 
-        return -1; // placeholder
+        // Note: solution assumes values cannot be empty.
+        // Can be solved with e.g. std::min_element
+
+        float lowest = values.front();
+        for (auto value : values) { // I don't care that the first element is read twice
+            if (value < lowest) {
+                lowest = value;
+            }
+        }
+        return lowest;
     }
 
     bool containsSpace(std::string str) {
-        // TODO return true if `str` contains a space (' '), false otherwise
+
+        // again can be solved by more fancy std:: algorithms like any_of
+
+        for (auto c : str) {
+            if (std::isspace(c)) { // or c == ' ', but isspace is better. Read the documentation.
+                return true;
+            }
+        }
 
         return false; // placeholder
     }
 
     int countValuesBelowThreshold(std::vector<double> values, double threshold) {
-        // TODO return the number of elements in `values` that has a value below the
-        // given threshold value
 
-        return -1; // placeholder
+        // again can be solved by more fancy std:: algorithms like count_if
+
+        int count = 0;
+        for (auto value : values) {
+            if (value < threshold) {
+                ++count; // or value++ (what is the difference?)
+            }
+        }
+
+        return count;
     }
 
     std::string capitalizeString(std::string str) {
-        // TODO: Capitalize the first letter of the string `str`.
-        //  E.g "per" -> "Per", "" -> "", "OLA" -> "Ola", etc.
-        // Note: `str` could be empty!
 
-        return ""; // placeholder
+        // again can be solved by more fancy std:: algorithms like transform
+
+        if (str.empty()) return ""; // early return
+
+        str.front() = std::toupper(str.front()); // front() same as [0]
+        for (int i = 1; i < str.size(); i++) {
+            str[i] = std::tolower(str[i]);
+        }
+
+        return str;
     }
 
     double mathOperation(double a, double b, Operations op) {
-        // TODO add, subtract, multiply or divide `a` and `b` depending on the value of the enumeration `op`
-
-        return -1; // placeholder
+        switch (op) {
+            case Operations::ADD:
+                return a+b;
+            case Operations::SUBTRACT:
+                return a-b;
+            case Operations::MULTIPLY:
+                return a*b;
+            case Operations::DIVIDE:
+                return a/b;
+        }
     }
 
 } // namespace ais1003
